@@ -16,6 +16,8 @@ import round14 from '../data_test/ligaArg/round_14.json'
 import round15 from '../data_test/ligaArg/round_15.json'
 import round16 from '../data_test/ligaArg/round_16.json'
 
+//import Table from './Table'
+
 function LigaArg() {
   const [currentRound, setCurrentRound] = useState(1)
   
@@ -43,6 +45,7 @@ function LigaArg() {
 
   return (
     <div className="min-h-screen bg-green-900 p-4 lg:p-8">
+      {/* <Table /> */}
       <div className="max-w-3xl mx-auto pt-12 lg:pt-0">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
           <button 

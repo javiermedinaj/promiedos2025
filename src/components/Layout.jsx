@@ -23,7 +23,9 @@ function Layout() {
       <main className="flex-1 pt-16">
         {activeLeague === 'argentina' && <LigaArgentina />}
         {activeLeague === 'premier' && <Premier />}
+
       </main>
+  
     </div>
   </div>
   )
