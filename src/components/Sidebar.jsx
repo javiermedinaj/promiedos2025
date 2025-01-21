@@ -1,5 +1,6 @@
 function Sidebar({ activeLeague, setActiveLeague, setIsSidebarOpen, isSidebarOpen }) {
   const leagues = [
+    { id: 'home', name: 'Hoy' },
     { id: 'argentina', name: 'Liga Argentina' },
     { id: 'premier', name: 'Premier League' }
   ]
