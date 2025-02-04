@@ -1,34 +1,40 @@
-import { useState } from 'react'
-import Navbar from './Navbar'
-import Sidebar from './Sidebar'
-import LigaArgentina from './LigaArg'
-import Premier from './Premier'
-import LiveMatches from './LiveMatches'
+import { useState } from "react";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
-function Layout() {
-  const [activeLeague, setActiveLeague] = useState('home')
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+function Layout({ children }) {
+  const [activeLeague, setActiveLeague] = useState("home");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
+  const handleToggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
-    <div className="relative min-h-screen bg-gray-100">
-      <Navbar toggleSidebar={toggleSidebar} />
-      <div className="lg:flex">
-        <Sidebar 
-          activeLeague={activeLeague}
-          setActiveLeague={setActiveLeague}
-          isSidebarOpen={isSidebarOpen}
-          setIsSidebarOpen={setIsSidebarOpen}
-        />
-        <main className="flex-1 pt-16">
-          {activeLeague === 'home' && <LiveMatches />}
-          {activeLeague === 'argentina' && <LigaArgentina />}
-          {activeLeague === 'premier' && <Premier />}
-        </main>
-      </div>
+    <div className="min-h-screen bg-gray-100">
+      <Navbar onToggleSidebar={handleToggleSidebar} />
+      
+      {isSidebarOpen && (
+        <div className="fixed inset-0 z-40">
+          <div 
+            className="fixed inset-0 bg-black opacity-25"
+            onClick={() => setIsSidebarOpen(false)}
+          ></div>
+          
+          <Sidebar 
+            activeLeague={activeLeague}
+            setActiveLeague={setActiveLeague}
+            isSidebarOpen={isSidebarOpen}
+            setIsSidebarOpen={setIsSidebarOpen}
+          />
+        </div>
+      )}
+
+      <main className="pt-16">
+        {children}
+      </main>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
